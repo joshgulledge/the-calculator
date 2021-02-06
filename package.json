@@ -1,0 +1,20 @@
+{
+  "name": "the-calculator",
+  "version": "1.0.0",
+  "description": "cal on server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshgulledge/the-calculator.git"
+  },
+  "author": "josh gulledge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshgulledge/the-calculator/issues"
+  },
+  "homepage": "https://github.com/joshgulledge/the-calculator#readme"
+}
