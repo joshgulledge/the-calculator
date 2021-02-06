@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/joshgulledge/the-calculator/issues"
   },
-  "homepage": "https://github.com/joshgulledge/the-calculator#readme"
+  "homepage": "https://github.com/joshgulledge/the-calculator#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
