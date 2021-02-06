@@ -1,5 +1,12 @@
 console.log('client js up and running sir');
 
+// global variables
+let operator = '';
+let num1 = 0;
+let num2 = 0;
+let mathProblemArr = [];
+let currentNumber = '';
+
 $(document).ready(onReady);
 
 function onReady() {
@@ -10,14 +17,9 @@ function onReady() {
 }
 
 function useNumberButtons(e) {
-  $('#input-container').val(`${e.target.id}`);
+  currentNumber += e.target.id;
+  $('#input-container').val(`${currentNumber}`);
 }
-
-// global variables
-let operator = '';
-let num1 = 0;
-let num2 = 0;
-let mathProblemArr = [];
 
 // functions
 
