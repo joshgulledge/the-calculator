@@ -4,7 +4,7 @@ $(document).ready(onReady);
 
 function onReady() {
   $('.operator-btns').on('click', setOperator);
-  $('#equals').on('click', getAnswer);
+  $('#equals').on('click', sendMathInfo);
   $('#clear').on('click', clearInputs);
 }
 
@@ -12,6 +12,7 @@ function onReady() {
 let operator = '';
 let num1 = 0;
 let num2 = 0;
+let mathProblemArr = [];
 
 // functions
 
@@ -28,12 +29,65 @@ function setOperator(e) {
   // console.log(operator);
 }
 
-function getAnswer() {
+function sendMathInfo() {
   gatherInputs();
-  console.log(`we are going to ${operator} the numbers ${num1} and ${num2}`);
+  // send the problem to server
+  // do not get answer here
+  $.ajax({
+    url: '/getAnswers',
+    method: 'POST',
+    data: {
+      doTheMath: mathProblemArr,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  // use get to retrieve answer per instructions
+  getAnswer();
+}
+
+function getAnswer() {
+  $.ajax({
+    url: '/getAnswers',
+    method: 'GET',
+  })
+    .then((res) => renderData(res))
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function renderData(theData) {
+  // clear answer
+  $('.current-answer').empty();
+
+  // most recent problem is the last one
+  const mostRecent = theData[theData.length - 1];
+  $('.current-answer').append(`
+  ${mostRecent.results}
+  `);
+
+  // dont render most recent in this list
+  for (let i = 0; i < theData.length - 1; i++) {
+    $('.all-the-problems').append(`
+    <li>${theData[i].num1} ${theData[i].operation} ${theData[i].num2}  </li>
+    `);
+  }
 }
 
 function gatherInputs() {
-  num1 = $('#first-numb-input').val();
-  num2 = $('#second-numb-input').val();
+  mathProblemArr = [];
+
+  const mathProblem = {
+    num1: $('#first-numb-input').val(),
+    num2: $('#second-numb-input').val(),
+    operation: operator,
+  };
+
+  mathProblemArr.push(mathProblem);
 }

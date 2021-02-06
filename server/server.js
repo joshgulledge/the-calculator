@@ -1,19 +1,26 @@
 const express = require('express');
 const app = express();
+
 // set port
 const port = 3000;
+
+// set global variables
+const previousProblems = [];
+
 // set public
 app.use(express.static('server/public'));
+
 // set json reader
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // start listening
 app.listen(port, () => {
   console.log('listening on port', port);
 });
 
 app.get('/getAnswers', (req, res) => {
-  res.send('you did it');
+  res.send(previousProblems);
 });
 
 app.post('/getAnswers', (req, res) => {
@@ -22,7 +29,7 @@ app.post('/getAnswers', (req, res) => {
 
   calculate(calculateInfo);
 
-  res.send('post recieved');
+  res.sendStatus(200);
 });
 /*
 ------ Follow this pattern for posts ------
@@ -39,15 +46,26 @@ app.post('/getAnswers', (req, res) => {
 */
 
 function calculate(theMath) {
-  let theInfo = theMath[0];
-  let numberOne = Number(theInfo.num1);
-  let numberTwo = Number(theInfo.num2);
-  let results;
+  const theInfo = theMath[0];
+  const problem = {
+    num1: Number(theInfo.num1),
+    num2: Number(theInfo.num2),
+    operation: theInfo.operation,
+    results: 0,
+  };
 
   if (theInfo.operation === 'add') {
-    results = numberOne + numberTwo;
+    problem.results = problem.num1 + problem.num2;
   }
   if (theInfo.operation === 'subtract') {
-    results = numberOne - numberTwo;
+    problem.results = problem.num1 - problem.num2;
   }
+  if (theInfo.operation === 'multiply') {
+    problem.results = problem.num1 * problem.num2;
+  }
+  if (theInfo.operation === 'divide') {
+    problem.results = problem.num1 / problem.num2;
+  }
+
+  previousProblems.push(problem);
 }
