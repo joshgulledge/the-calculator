@@ -1,3 +1,7 @@
 body {
   background-color: aqua;
 }
+
+.operator-btns {
+  display: inline-block;
+}
