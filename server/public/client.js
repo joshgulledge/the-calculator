@@ -6,6 +6,11 @@ function onReady() {
   $('.operator-btns').on('click', setOperator);
   $('#equals').on('click', sendMathInfo);
   $('#clear').on('click', clearInputs);
+  $('.the-numbers').on('click', useNumberButtons);
+}
+
+function useNumberButtons(e) {
+  $('#input-container').val(`${e.target.id}`);
 }
 
 // global variables

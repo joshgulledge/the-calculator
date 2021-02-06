@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+    <!-- <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" /> -->
     <link rel="stylesheet" href="styles.css" />
     <script src="jquery.js"></script>
     <script src="client.js"></script>
@@ -12,19 +14,48 @@
   <body>
     <h1>Come to the Server Side</h1>
 
-    <input type="number" placeholder="First Number" id="first-numb-input" />
+    <!-- <input type="number" placeholder="First Number" id="first-numb-input" /> -->
 
-    <div class="operator-btns">
+    <!-- <div class="operator-btns">
       <button id="add">+</button>
       <button id="subtract">-</button>
       <button id="multiply">x</button>
       <button id="divide">/</button>
+    </div> -->
+
+    <input type="text" id="input-container" />
+
+    <div class="the-numbers">
+      <div class="row-one">
+        <button id="1">1</button>
+        <button id="2">2</button>
+        <button id="3">3</button>
+        <button id="add">+</button>
+      </div>
+
+      <div class="row-two">
+        <button id="4">4</button>
+        <button id="5">5</button>
+        <button id="6">6</button>
+        <button id="subtract">-</button>
+      </div>
+
+      <div class="row-three">
+        <button id="7">7</button>
+        <button id="8">8</button>
+        <button id="9">9</button>
+        <button id="multiply">x</button>
+      </div>
+
+      <div class="row-three">
+        <button id="0">0</button>
+        <button id="divide">/</button>
+        <button id="equals">=</button>
+        <button id="clear">C</button>
+      </div>
     </div>
 
-    <input type="number" placeholder="Second Number" id="second-numb-input" />
-
-    <button id="equals">=</button>
-    <button id="clear">C</button>
+    <!-- <input type="number" placeholder="Second Number" id="second-numb-input" /> -->
 
     <div class="current-answer"></div>
 
