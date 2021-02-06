@@ -56,7 +56,10 @@ function getAnswer() {
     url: '/getAnswers',
     method: 'GET',
   })
-    .then((res) => renderData(res))
+    .then((res) => {
+      renderData(res);
+      console.log(res);
+    })
     .catch((err) => {
       console.error(err);
     });
@@ -72,10 +75,29 @@ function renderData(theData) {
   ${mostRecent.results}
   `);
 
+  // empty the problems list
+  $('.all-the-problems').empty();
+
   // dont render most recent in this list
   for (let i = 0; i < theData.length - 1; i++) {
+    let operator;
+    // get the symbol
+    switch (theData[i].operation) {
+      case 'add':
+        operator = '+';
+        break;
+      case 'subtract':
+        operator = '-';
+        break;
+      case 'multiply':
+        operator = 'x';
+        break;
+      case 'divide':
+        operator = '/';
+    }
+
     $('.all-the-problems').append(`
-    <li>${theData[i].num1} ${theData[i].operation} ${theData[i].num2}  </li>
+    <li>${theData[i].num1} ${operator} ${theData[i].num2}  = ${theData[i].results}</li>
     `);
   }
 }
