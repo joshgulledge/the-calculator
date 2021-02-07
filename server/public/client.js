@@ -35,6 +35,12 @@ function useNumberButtons(e) {
 
     // if its the equal
     if (e.target.id === 'equals') {
+      // check for all values needed
+      if (!number1 || !number2 || !operator) {
+        alert('Please use two numbers and an operator');
+        return;
+      }
+
       // set up the array of obj
       mathProblemArr.push({
         num1: number1,
