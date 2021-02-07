@@ -5,6 +5,7 @@ let operator = '';
 let num1 = 0;
 let num2 = 0;
 let mathProblemArr = [];
+let display = '';
 let currentNumber = '';
 
 $(document).ready(onReady);
@@ -19,21 +20,30 @@ function onReady() {
 function useNumberButtons(e) {
   // console.log(e.target.attributes.class);
   let input = $('#input-container');
-  // see if target is a number
+
+  if (e.target.id === 'equals') {
+  }
   if (e.target.attributes.class) {
+    // see if target is a number
+    display += e.target.id;
     currentNumber += e.target.id;
-    input.val(`${currentNumber}`);
+    input.val(`${display}`);
   }
   // if target not a number
   if (!e.target.attributes.class) {
-    num1 = input.val();
+    // num1 empty then save to num1, num1 not empty save to num2
+    !num1 ? (num1 = currentNumber) : (num2 = currentNumber);
 
+    // get operator symbol
     makeOperatorSymbol(e.target.id);
-    input.val(`${currentNumber} ${operator}`);
 
-    currentNumber += operator;
+    // add symbol to display
+    display += operator;
+    input.val(`${display}`);
 
-    console.log(num1, operator);
+    // clear out current number
+    currentNumber = '';
+    console.log(`num1 = ${num1}, num2 = ${num2}, operator is ${operator}`);
   }
 }
 
