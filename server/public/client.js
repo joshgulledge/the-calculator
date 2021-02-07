@@ -10,15 +10,31 @@ let currentNumber = '';
 $(document).ready(onReady);
 
 function onReady() {
-  $('.operator-btns').on('click', setOperator);
+  // $('.operator-btns').on('click', setOperator);
   $('#equals').on('click', sendMathInfo);
   $('#clear').on('click', clearInputs);
   $('.the-numbers').on('click', useNumberButtons);
 }
 
 function useNumberButtons(e) {
-  currentNumber += e.target.id;
-  $('#input-container').val(`${currentNumber}`);
+  // console.log(e.target.attributes.class);
+  let input = $('#input-container');
+  // see if target is a number
+  if (e.target.attributes.class) {
+    currentNumber += e.target.id;
+    input.val(`${currentNumber}`);
+  }
+  // if target not a number
+  if (!e.target.attributes.class) {
+    num1 = input.val();
+
+    makeOperatorSymbol(e.target.id);
+    input.val(`${currentNumber} ${operator}`);
+
+    currentNumber += operator;
+
+    console.log(num1, operator);
+  }
 }
 
 // functions
@@ -31,10 +47,10 @@ function clearInputs() {
   num2 = 0;
 }
 
-function setOperator(e) {
-  operator = $(e.target).attr('id');
-  // console.log(operator);
-}
+// function setOperator(e) {
+//   operator = $(e.target).attr('id');
+//   // console.log(operator);
+// }
 
 function sendMathInfo() {
   gatherInputs();
@@ -87,25 +103,29 @@ function renderData(theData) {
 
   // dont render most recent in this list
   for (let i = 0; i < theData.length - 1; i++) {
-    let operator;
     // get the symbol
-    switch (theData[i].operation) {
-      case 'add':
-        operator = '+';
-        break;
-      case 'subtract':
-        operator = '-';
-        break;
-      case 'multiply':
-        operator = 'x';
-        break;
-      case 'divide':
-        operator = '/';
-    }
+    makeOperatorSymbol(theData[i].operation);
 
     $('.all-the-problems').append(`
     <li>${theData[i].num1} ${operator} ${theData[i].num2}  = ${theData[i].results}</li>
     `);
+  }
+}
+
+function makeOperatorSymbol(someValue) {
+  // get the symbol
+  switch (someValue) {
+    case 'add':
+      operator = '+';
+      break;
+    case 'subtract':
+      operator = '-';
+      break;
+    case 'multiply':
+      operator = 'x';
+      break;
+    case 'divide':
+      operator = '/';
   }
 }
 
