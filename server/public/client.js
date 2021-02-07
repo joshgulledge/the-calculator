@@ -1,5 +1,3 @@
-console.log('client js up and running sir');
-
 // global variables
 let operator = '';
 let number1 = 0;

@@ -2,6 +2,63 @@ body {
   background-color: aqua;
 }
 
-.operator-btns {
+/* .operator-btns {
   display: inline-block;
+} */
+
+.the-numbers * {
+  width: 20%;
+  height: 60px;
+  border-radius: 10px;
+  /* height: auto; */
 }
+
+#input-container {
+  width: 95%;
+  height: 45px;
+}
+
+.flex-container,
+.row-one,
+.row-two,
+.row-three,
+.row-four {
+  display: flex;
+  background-color: darkorchid;
+  border: solid 2px yellowgreen;
+  width: 50%;
+  margin: 20px auto;
+  justify-content: space-around;
+}
+
+/* .row-one {
+  background-color: blue;
+  display: flex;
+  width: 75%;
+  margin: 20px auto;
+  justify-content: space-around;
+}
+
+.row-two {
+  background-color: chartreuse;
+  display: flex;
+  width: 75%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.row-three {
+  background-color: crimson;
+  display: flex;
+  width: 75%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.row-four {
+  background-color: darkolivegreen;
+  display: flex;
+  width: 75%;
+  margin: auto;
+  justify-content: space-around;
+} */
