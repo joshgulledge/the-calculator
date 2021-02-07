@@ -2,8 +2,8 @@ console.log('client js up and running sir');
 
 // global variables
 let operator = '';
-let num1 = 0;
-let num2 = 0;
+let number1 = 0;
+let number2 = 0;
 let mathProblemArr = [];
 let display = '';
 let currentNumber = '';
@@ -12,7 +12,7 @@ $(document).ready(onReady);
 
 function onReady() {
   // $('.operator-btns').on('click', setOperator);
-  $('#equals').on('click', sendMathInfo);
+  // $('#equals').on('click', sendMathInfo);
   $('#clear').on('click', clearInputs);
   $('.the-numbers').on('click', useNumberButtons);
 }
@@ -21,18 +21,37 @@ function useNumberButtons(e) {
   // console.log(e.target.attributes.class);
   let input = $('#input-container');
 
-  if (e.target.id === 'equals') {
-  }
   if (e.target.attributes.class) {
     // see if target is a number
     display += e.target.id;
     currentNumber += e.target.id;
     input.val(`${display}`);
   }
-  // if target not a number
+
+  // if its the equal
+  if (e.target.id === 'equals') {
+    !number1 ? (number1 = currentNumber) : (number2 = currentNumber);
+
+    // set up the array of obj
+    mathProblemArr.push({
+      num1: number1,
+      num2: number2,
+      operation: operator,
+    });
+
+    console.log(mathProblemArr);
+
+    // send to server
+    sendMathInfo();
+
+    // leave the function
+    return;
+  }
+
+  // if target not number or equal or clear
   if (!e.target.attributes.class) {
     // num1 empty then save to num1, num1 not empty save to num2
-    !num1 ? (num1 = currentNumber) : (num2 = currentNumber);
+    !number1 ? (number1 = currentNumber) : (number2 = currentNumber);
 
     // get operator symbol
     makeOperatorSymbol(e.target.id);
@@ -43,7 +62,9 @@ function useNumberButtons(e) {
 
     // clear out current number
     currentNumber = '';
-    console.log(`num1 = ${num1}, num2 = ${num2}, operator is ${operator}`);
+    console.log(
+      `num1 = ${number1}, num2 = ${number2}, operator is ${operator}`
+    );
   }
 }
 
@@ -63,7 +84,7 @@ function clearInputs() {
 // }
 
 function sendMathInfo() {
-  gatherInputs();
+  // gatherInputs();
   // send the problem to server
   // do not get answer here
   $.ajax({
@@ -139,14 +160,14 @@ function makeOperatorSymbol(someValue) {
   }
 }
 
-function gatherInputs() {
-  mathProblemArr = [];
+// function gatherInputs() {
+//   mathProblemArr = [];
 
-  const mathProblem = {
-    num1: $('#first-numb-input').val(),
-    num2: $('#second-numb-input').val(),
-    operation: operator,
-  };
+//   const mathProblem = {
+//     num1: $('#first-numb-input').val(),
+//     num2: $('#second-numb-input').val(),
+//     operation: operator,
+//   };
 
-  mathProblemArr.push(mathProblem);
-}
+//   mathProblemArr.push(mathProblem);
+// }

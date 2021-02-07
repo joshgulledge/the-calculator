@@ -54,16 +54,16 @@ function calculate(theMath) {
     results: 0,
   };
 
-  if (theInfo.operation === 'add') {
+  if (theInfo.operation === '+') {
     problem.results = problem.num1 + problem.num2;
   }
-  if (theInfo.operation === 'subtract') {
+  if (theInfo.operation === '-') {
     problem.results = problem.num1 - problem.num2;
   }
-  if (theInfo.operation === 'multiply') {
+  if (theInfo.operation === 'x') {
     problem.results = problem.num1 * problem.num2;
   }
-  if (theInfo.operation === 'divide') {
+  if (theInfo.operation === '/') {
     problem.results = problem.num1 / problem.num2;
   }
 
