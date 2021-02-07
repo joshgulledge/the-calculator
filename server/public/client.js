@@ -28,30 +28,29 @@ function useNumberButtons(e) {
     input.val(`${display}`);
   }
 
-  // if its the equal
-  if (e.target.id === 'equals') {
-    !number1 ? (number1 = currentNumber) : (number2 = currentNumber);
-
-    // set up the array of obj
-    mathProblemArr.push({
-      num1: number1,
-      num2: number2,
-      operation: operator,
-    });
-
-    console.log(mathProblemArr);
-
-    // send to server
-    sendMathInfo();
-
-    // leave the function
-    return;
-  }
-
   // if target not number or equal or clear
   if (!e.target.attributes.class) {
     // num1 empty then save to num1, num1 not empty save to num2
     !number1 ? (number1 = currentNumber) : (number2 = currentNumber);
+
+    // if its the equal
+    if (e.target.id === 'equals') {
+      // set up the array of obj
+      mathProblemArr.push({
+        num1: number1,
+        num2: number2,
+        operation: operator,
+      });
+
+      console.log(mathProblemArr);
+
+      // send to server
+      sendMathInfo();
+      clearInputs();
+
+      // leave the function
+      return;
+    }
 
     // get operator symbol
     makeOperatorSymbol(e.target.id);
@@ -71,11 +70,15 @@ function useNumberButtons(e) {
 // functions
 
 function clearInputs() {
-  $('#first-numb-input').val('');
-  $('#second-numb-input').val('');
+  // $('#first-numb-input').val('');
+  // $('#second-numb-input').val('');
+  $('#input-container').empty();
   operator = '';
   num1 = 0;
   num2 = 0;
+  currentNumber = '';
+  display = '';
+  mathProblemArr = [];
 }
 
 // function setOperator(e) {
@@ -133,12 +136,12 @@ function renderData(theData) {
   $('.all-the-problems').empty();
 
   // dont render most recent in this list
-  for (let i = 0; i < theData.length - 1; i++) {
+  for (let i = 0; i < theData.length; i++) {
     // get the symbol
-    makeOperatorSymbol(theData[i].operation);
+    // makeOperatorSymbol(theData[i].operation);
 
     $('.all-the-problems').append(`
-    <li>${theData[i].num1} ${operator} ${theData[i].num2}  = ${theData[i].results}</li>
+    <li>${theData[i].num1} ${theData[i].operation} ${theData[i].num2}  = ${theData[i].results}</li>
     `);
   }
 }
