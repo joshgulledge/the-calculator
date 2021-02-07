@@ -13,6 +13,25 @@ function onReady() {
   // $('#equals').on('click', sendMathInfo);
   $('#clear').on('click', clearInputs);
   $('.the-numbers').on('click', useNumberButtons);
+  $('#reset').on('click', resetHistory);
+}
+
+function resetHistory() {
+  // send new get call
+  $.ajax({
+    url: '/resetHistory',
+    method: 'GET',
+  })
+    .then((res) => {
+      clearInputs();
+      $('.current-answer').empty();
+      $('.all-the-problems').empty();
+      $('#input-container').val('');
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function useNumberButtons(e) {
@@ -76,10 +95,10 @@ function useNumberButtons(e) {
 function clearInputs() {
   // $('#first-numb-input').val('');
   // $('#second-numb-input').val('');
-  $('#input-container').empty();
+  $('#input-container').val('');
   operator = '';
-  num1 = 0;
-  num2 = 0;
+  number1 = 0;
+  number2 = 0;
   currentNumber = '';
   display = '';
   mathProblemArr = [];
@@ -133,7 +152,7 @@ function renderData(theData) {
   // most recent problem is the last one
   const mostRecent = theData[theData.length - 1];
   $('.current-answer').append(`
-  ${mostRecent.results}
+  <h1>${mostRecent.results}<h1>
   `);
 
   // empty the problems list

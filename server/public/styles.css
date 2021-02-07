@@ -1,10 +1,24 @@
 body {
-  background-color: aqua;
+  color: #f5efef;
+  background-image: url('./background.jpg');
+  background-size: cover;
+  text-align: center;
 }
 
 /* .operator-btns {
   display: inline-block;
 } */
+
+ul {
+  text-align: left;
+  font-size: 25px;
+}
+
+::placeholder {
+  color: #ff7844;
+
+  font-size: 25px;
+}
 
 .the-numbers * {
   width: 20%;
@@ -14,17 +28,24 @@ body {
 }
 
 #input-container {
+  background-color: #ffcb8e;
   width: 95%;
-  height: 45px;
+  height: 55px;
+  font-size: 25px;
 }
 
+button {
+  background-color: #ffcb8e;
+  color: #ff7844;
+  font-size: 30px;
+}
 .flex-container,
 .row-one,
 .row-two,
 .row-three,
 .row-four {
   display: flex;
-  background-color: darkorchid;
+  background-color: #931a25;
   border: solid 2px yellowgreen;
   width: 50%;
   margin: 20px auto;

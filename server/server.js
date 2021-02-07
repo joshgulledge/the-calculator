@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // set global variables
-const previousProblems = [];
+let previousProblems = [];
 
 // set public
 app.use(express.static('server/public'));
@@ -20,6 +20,12 @@ app.listen(port, () => {
 });
 
 app.get('/getAnswers', (req, res) => {
+  res.send(previousProblems);
+});
+
+// reset button pressed
+app.get('/resetHistory', (req, res) => {
+  previousProblems = [];
   res.send(previousProblems);
 });
 
