@@ -8,6 +8,6 @@
 
 ### Picture
 
-![calculator]('./LiveShot.png')
+![calculator]('server/public/LiveShot.png')
 
 Your project description goes here. What problem did you solve? How did you solve it?
