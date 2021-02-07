@@ -8,6 +8,6 @@
 
 ### Picture
 
-![calculator]('images/LiveShot.png')
+![calculator](images/LiveShot.png)
 
 Your project description goes here. What problem did you solve? How did you solve it?
