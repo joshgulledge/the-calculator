@@ -15,7 +15,7 @@ ul {
 }
 
 ::placeholder {
-  color: #ff7844;
+  color: #f5efef;
 
   font-size: 25px;
 }
@@ -28,15 +28,16 @@ ul {
 }
 
 #input-container {
-  background-color: #ffcb8e;
-  width: 95%;
+  background-color: #14110f;
+  color: #f5efef;
+  width: 100%;
   height: 55px;
   font-size: 25px;
 }
 
 button {
-  background-color: #ffcb8e;
-  color: #ff7844;
+  background-color: #659157;
+  color: #f5efef;
   font-size: 30px;
 }
 .flex-container,
@@ -45,7 +46,7 @@ button {
 .row-three,
 .row-four {
   display: flex;
-  background-color: #931a25;
+  background-color: #14110f;
   border: solid 2px yellowgreen;
   width: 50%;
   margin: 20px auto;
